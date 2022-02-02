@@ -1,0 +1,32 @@
+// Creating tables
+Table order_items {
+  order_id int
+  promotion_id int
+  product_id int
+  price int
+  quantity int [default: 1]
+}
+
+Table orders {
+  id int [pk]
+  total int
+}
+
+Table products {
+  id int [pk]
+  name varchar
+  price int
+}
+
+Table promotions {
+  id int [pk]
+  name varchar
+  discount int
+}
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+Ref: order_items.product_id > products.id
+Ref: order_items.order_id > orders.id
+Ref: order_items.promotion_id > promotions.id
